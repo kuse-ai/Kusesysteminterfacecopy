@@ -72,10 +72,6 @@ export default function FileArea({
         { id: "16", name: "Document 1.pdf", type: "pdf", icon: "pdf" },
         { id: "17", name: "Spreadsheet.xlsx", type: "xlsx", icon: "xlsx" },
       ],
-      "Folder 3": [
-        { id: "18", name: "Presentation.pptx", type: "pptx", icon: "pptx" },
-        { id: "19", name: "Notes.docx", type: "docx", icon: "docx" },
-      ],
       "Kuse Onboarding": [
         { id: "20", name: "Welcome.pdf", type: "pdf", icon: "pdf" },
         { id: "21", name: "Getting Started.docx", type: "docx", icon: "docx" },

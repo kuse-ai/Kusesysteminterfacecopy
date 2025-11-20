@@ -127,7 +127,6 @@ export function ExpandedNavPanel({
   const folders = [
     { name: "Folder 1", hasChildren: true },
     { name: "Folder 2", hasChildren: false },
-    { name: "Folder 3", hasChildren: false },
     { name: "Kuse Onboarding", hasChildren: false },
   ];
 
