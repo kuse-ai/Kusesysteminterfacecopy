@@ -115,23 +115,61 @@ function Icon5() {
 
 // --- Component ---
 
-// Mock data for demonstration
+// Mock data for demonstration (covers all file types with a 5-level tree)
 const mockFileData = [
   {
-    id: "1",
-    name: "Documents",
+    id: "root-1",
+    name: "My Files",
     type: "folder" as const,
     children: [
-      { id: "1-1", name: "report.pdf", type: "file" as const },
-      { id: "1-2", name: "notes.txt", type: "file" as const }
+      {
+        id: "mf-1",
+        name: "Project Alpha",
+        type: "folder" as const,
+        children: [
+          { id: "mf-1-1", name: "Overview.pdf", type: "pdf" as const },
+          { id: "mf-1-2", name: "Spec.docx", type: "doc" as const },
+          { id: "mf-1-3", name: "Dashboard.html", type: "html" as const },
+          { id: "mf-1-4", name: "Metrics.xlsx", type: "excel" as const },
+          {
+            id: "mf-1-5",
+            name: "Sprint Assets",
+            type: "folder" as const,
+            children: [
+              { id: "mf-1-5-1", name: "Demo.pptx", type: "ppt" as const },
+              { id: "mf-1-5-2", name: "Walkthrough.mp4", type: "video" as const },
+              {
+                id: "mf-1-5-3",
+                name: "Designs",
+                type: "folder" as const,
+                children: [
+                  { id: "mf-1-5-3-1", name: "Hero.png", type: "image" as const },
+                  { id: "mf-1-5-3-2", name: "Logo.svg", type: "image" as const },
+                  {
+                    id: "mf-1-5-3-3",
+                    name: "Archive",
+                    type: "folder" as const,
+                    children: [
+                      { id: "mf-1-5-3-3-1", name: "OldNotes.txt", type: "file" as const },
+                      { id: "mf-1-5-3-3-2", name: "Reference.pdf", type: "pdf" as const }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
     ]
   },
   {
-    id: "2",
-    name: "Images",
+    id: "root-2",
+    name: "Shared with me",
     type: "folder" as const,
     children: [
-      { id: "2-1", name: "screenshot.png", type: "image" as const }
+      { id: "swm-1", name: "Team Plan.docx", type: "doc" as const },
+      { id: "swm-2", name: "Budget.xlsx", type: "excel" as const },
+      { id: "swm-3", name: "Recap.mp4", type: "video" as const }
     ]
   }
 ];
