@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Plus, Grid3x3, List, Upload, Menu } from "lucide-react";
+// Replaced Lucide icons with emoji for better reliability
 import FileGridItem from "./FileGridItem";
 import imgACoupleRidingBicycles from "figma:asset/5a6060e9ef4b69650ee271496e3abbda4a058a1e.png";
 import imgScreenshot from "figma:asset/47fc666b26620b5d72ce06f4be3eafa900a54c21.png";
@@ -107,20 +107,20 @@ export default function FileArea({
 
         <div className="flex gap-[10px]">
           <button className="w-[32px] h-[32px] flex items-center justify-center hover:bg-neutral-200 rounded-[4px] transition-colors">
-            <Plus className="w-[20px] h-[20px] text-[rgba(32,32,32,0.6)]" />
+            <span className="text-[20px] leading-none">➕</span>
           </button>
           <button
             onClick={() => setViewMode(viewMode === "grid" ? "list" : "grid")}
             className="w-[32px] h-[32px] flex items-center justify-center hover:bg-neutral-200 rounded-[4px] transition-colors"
           >
             {viewMode === "grid" ? (
-              <List className="w-[20px] h-[20px] text-[rgba(32,32,32,0.6)]" />
+              <span className="text-[20px] leading-none">📋</span>
             ) : (
-              <Grid3x3 className="w-[20px] h-[20px] text-[rgba(32,32,32,0.6)]" />
+              <span className="text-[20px] leading-none">⚏</span>
             )}
           </button>
           <button className="w-[32px] h-[32px] flex items-center justify-center hover:bg-neutral-200 rounded-[4px] transition-colors">
-            <Upload className="w-[20px] h-[20px] text-[rgba(32,32,32,0.6)]" />
+            <span className="text-[20px] leading-none">⬆️</span>
           </button>
         </div>
       </div>

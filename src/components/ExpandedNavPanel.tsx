@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ChevronRight, ChevronDown } from "lucide-react";
+// Replaced Lucide icons with emoji for better reliability
 import svgPaths from "../imports/svg-he6gmen30l";
 import imgEllipse1381 from "figma:asset/65f57febecf14e96f6c70d5e90a5b916e8a55498.png";
 import { NavItem } from "./NavItem";
@@ -224,9 +224,9 @@ export function ExpandedNavPanel({
                           {folder.hasChildren && (
                             <div className="chevron-container">
                               {isExpanded ? (
-                                <ChevronDown className="chevron-icon" />
+                                <span className="chevron-icon">🔽</span>
                               ) : (
-                                <ChevronRight className="chevron-icon" />
+                                <span className="chevron-icon">▶️</span>
                               )}
                             </div>
                           )}
