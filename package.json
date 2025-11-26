@@ -1,6 +1,6 @@
 
   {
-      "name": "Kuse System Interface (Copy)",
+      "name": "kuse-system-interface-copy",
       "version": "0.1.0",
       "private": true,
       "dependencies": {
