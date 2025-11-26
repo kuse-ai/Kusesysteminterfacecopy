@@ -1,5 +1,5 @@
 {
-  "name": "olivia99-system-interface",
+  "name": "@kuse/system-interface",
   "version": "0.1.0",
   "description": "A modern React component library for system interfaces with dialog, file tree, and split button components",
   "main": "dist/index.js",
@@ -27,7 +27,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/olivia99/system-interface.git"
+    "url": "https://github.com/kuse-ai/system-interface.git"
   },
   "peerDependencies": {
     "react": ">=18.0.0",
