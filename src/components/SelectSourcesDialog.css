@@ -1,0 +1,193 @@
+.select-sources-content {
+    max-width: 500px;
+    padding: 0;
+    gap: 0;
+    border-color: rgba(106, 64, 64, 0.08);
+    background-color: white;
+    overflow: hidden;
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.select-sources-header {
+    height: 49px;
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(106, 64, 64, 0.08);
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.select-sources-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #6a4040;
+    font-family: 'Poppins', sans-serif;
+    line-height: 24px;
+}
+
+.web-search-row {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 16px 5px 16px;
+    position: relative;
+    width: 100%;
+    border-bottom: 1px solid rgba(106, 64, 64, 0.08);
+}
+
+.web-search-row-inner {
+    flex-basis: 0;
+    flex-grow: 1;
+    height: 32px;
+    min-height: 1px;
+    min-width: 1px;
+    position: relative;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.web-search-row-content {
+    background-clip: padding-box;
+    border: 0 solid transparent;
+    box-sizing: border-box;
+    height: 32px;
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.web-search-label-container {
+    position: absolute;
+    height: 20px;
+    left: 4px;
+    top: 6px;
+    width: 96.781px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.web-search-icon-wrapper {
+    height: 20px;
+    width: 20px;
+    position: relative;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.web-search-icon {
+    display: block;
+    width: 13px;
+    height: 13px;
+}
+
+.web-search-text {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.5;
+    font-style: normal;
+    position: relative;
+    flex-shrink: 0;
+    color: #6a4040;
+    font-size: 12px;
+    white-space: pre;
+}
+
+.web-search-toggle-wrapper {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    height: 17px;
+    align-items: flex-start;
+    right: -0.5px;
+    top: 7.5px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.select-sources-body {
+    background-color: #fafafa; /* neutral-50 */
+    width: 100%;
+    padding: 8px;
+}
+
+.select-sources-scroll-container {
+    height: 300px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid transparent;
+}
+
+.select-sources-tree-wrapper {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.select-sources-footer {
+    height: 61px;
+    padding: 0 20px;
+    border-top: 1px solid rgba(106, 64, 64, 0.08);
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.select-sources-count {
+    font-size: 12px;
+    color: #6a4040;
+    opacity: 0.6;
+    font-family: 'Inter', sans-serif;
+}
+
+.select-sources-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.select-sources-cancel-btn {
+    height: 36px;
+    padding: 0 17px;
+    border-radius: 8px;
+    border: 1px solid rgba(106, 64, 64, 0.1);
+    color: #6a4040;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    background: transparent;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.select-sources-cancel-btn:hover {
+    background-color: rgba(106, 64, 64, 0.05);
+}
+
+.select-sources-done-btn {
+    height: 36px;
+    padding: 0 16px;
+    border-radius: 8px;
+    background-color: #6a4040;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.select-sources-done-btn:hover {
+    background-color: #5a3636;
+}
