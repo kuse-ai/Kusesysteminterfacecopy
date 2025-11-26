@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import svgPaths from "../imports/svg-1vo43hmms7";
 import "./EmptyChatPanel.css";
+import { SplitButton } from "./SplitButton";
+import { SelectSourcesDialog } from "./SelectSourcesDialog";
 
 interface EmptyChatPanelProps {
   onSend: (message: string) => void;
@@ -113,8 +115,31 @@ function Icon5() {
 
 // --- Component ---
 
+// Mock data for demonstration
+const mockFileData = [
+  {
+    id: "1",
+    name: "Documents",
+    type: "folder" as const,
+    children: [
+      { id: "1-1", name: "report.pdf", type: "file" as const },
+      { id: "1-2", name: "notes.txt", type: "file" as const }
+    ]
+  },
+  {
+    id: "2",
+    name: "Images",
+    type: "folder" as const,
+    children: [
+      { id: "2-1", name: "screenshot.png", type: "image" as const }
+    ]
+  }
+];
+
 export default function EmptyChatPanel({ onSend }: EmptyChatPanelProps) {
   const [inputValue, setInputValue] = useState("");
+  const [isWebSearch, setIsWebSearch] = useState(false);
+  const [checkedIds, setCheckedIds] = useState<Set<string>>(new Set());
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -131,6 +156,23 @@ export default function EmptyChatPanel({ onSend }: EmptyChatPanelProps) {
       onSend(inputValue);
       setInputValue("");
     }
+  };
+
+  const handleToggleWebSearch = () => {
+    setIsWebSearch(!isWebSearch);
+  };
+
+  const handleSaveSelection = (ids: Set<string>, webSearch: boolean) => {
+    setCheckedIds(ids);
+    setIsWebSearch(webSearch);
+  };
+
+  const getButtonLabel = () => {
+    const selectedCount = checkedIds.size;
+    if (selectedCount === 0) {
+      return "All sources";
+    }
+    return `${selectedCount} source${selectedCount === 1 ? '' : 's'}`;
   };
 
   return (
@@ -195,12 +237,18 @@ export default function EmptyChatPanel({ onSend }: EmptyChatPanelProps) {
               <div className="input-bottom-row">
                 <div className="source-selector">
                   <Icon1 />
-                  <div className="source-btn">
-                    <div className="source-selector">
-                      <Icon2 />
-                      <p className="source-text">All sources</p>
-                    </div>
-                  </div>
+                  <SelectSourcesDialog
+                    data={mockFileData}
+                    checkedIds={checkedIds}
+                    isWebSearch={isWebSearch}
+                    onSave={handleSaveSelection}
+                  >
+                    <SplitButton
+                      isWebSearch={isWebSearch}
+                      onToggleWebSearch={handleToggleWebSearch}
+                      label={getButtonLabel()}
+                    />
+                  </SelectSourcesDialog>
                 </div>
                 
                 <div className="model-selector">

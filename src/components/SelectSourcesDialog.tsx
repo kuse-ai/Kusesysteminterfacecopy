@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter, DialogDescription } from "./ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter, DialogClose } from "./ui/dialog";
 import { ScrollArea } from "./ui/scroll-area";
 import { Toggle } from './Toggle';
 import { FolderTree, FileNode, getSelectionState } from './FolderTree';
 import './SelectSourcesDialog.css';
+import closeIcon from "../assets/svgs/close-16.svg";
 
 // --- Types ---
 
@@ -95,9 +96,11 @@ export function SelectSourcesDialog({ children, data, checkedIds, isWebSearch, o
             <DialogContent className="select-sources-content">
                 <DialogHeader className="select-sources-header">
                     <DialogTitle className="select-sources-title">Select Search Scope</DialogTitle>
-                     <DialogDescription className="sr-only">
-                        Select files and folders to use as sources for the chat.
-                    </DialogDescription>
+                    <DialogClose asChild>
+                        <button className="select-sources-close-btn" aria-label="Close">
+                            <img src={closeIcon} alt="" width={16} height={16} />
+                        </button>
+                    </DialogClose>
                 </DialogHeader>
 
                 {/* Web Search Toggle Row */}

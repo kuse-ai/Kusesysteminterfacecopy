@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { cn } from "./ui/utils";
+import './FolderTree.css';
 
 // --- Types ---
 export interface FileNode {
@@ -48,10 +49,10 @@ function TreeCheckbox({ state, onClick }: { state: SelectionState, onClick: () =
     return (
         <div 
             onClick={(e) => { e.stopPropagation(); onClick(); }}
-            className={`
-                relative rounded-[4px] shrink-0 size-[16px] flex items-center justify-center cursor-pointer transition-colors box-border
-                ${state === 'unchecked' ? 'border border-[rgba(106,64,64,0.6)] bg-transparent' : 'bg-[#6a4040]'}
-            `}
+            className={cn(
+                "tree-checkbox",
+                state
+            )}
         >
             {state === 'checked' && (
                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -70,10 +71,10 @@ function TreeCheckbox({ state, onClick }: { state: SelectionState, onClick: () =
 function ExpandArrow({ isOpen, visible, onClick }: { isOpen: boolean, visible: boolean, onClick: (e: React.MouseEvent) => void }) {
     return (
         <div 
-            className="relative rounded-[4px] shrink-0 size-[16px] cursor-pointer flex items-center justify-center"
+            className="expand-arrow"
             onClick={onClick}
         >
-            <div className={`w-[7px] h-[4px] transition-transform duration-200 ${isOpen ? '' : '-rotate-90'}`}>
+            <div className={`expand-arrow-inner ${!isOpen ? 'collapsed' : ''}`}>
                <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 7 4">
                     <path d={svgPaths.chevron} stroke="#6A4040" strokeLinecap="round" strokeLinejoin="round" strokeOpacity="0.6" />
                </svg>
@@ -85,8 +86,8 @@ function ExpandArrow({ isOpen, visible, onClick }: { isOpen: boolean, visible: b
 function FileIcon({ type }: { type: FileNode['type'] }) {
     if (type === 'folder') {
         return (
-             <div className="relative shrink-0 size-[16px]">
-                <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 14 12">
+             <div className="file-icon-container">
+                <svg className="file-icon-base" fill="none" preserveAspectRatio="none" viewBox="0 0 14 12">
                     <rect fill="#EBD7B5" height="8" opacity="0.4" rx="1.2" width="13.6" x="0" />
                     <path d={svgPaths.folder} fill="#F2BD84" />
                 </svg>
@@ -96,19 +97,19 @@ function FileIcon({ type }: { type: FileNode['type'] }) {
 
     if (type === 'image' || type === 'file') {
         return (
-             <div className="relative shrink-0 size-[16px]">
-                <div className="absolute inset-[5%_12.5%]">
-                    <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 12 15">
+             <div className="file-icon-container">
+                <div className="file-detail-icon-wrapper">
+                    <svg className="file-icon-base" fill="none" preserveAspectRatio="none" viewBox="0 0 12 15">
                          <path d={svgPaths.fileBase} fill="#FB7F12" />
                     </svg>
                 </div>
-                <div className="absolute inset-[35%_36.52%_30%_39%]">
-                    <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 4 6">
+                <div className="file-detail-inner-wrapper">
+                    <svg className="file-icon-base" fill="none" preserveAspectRatio="none" viewBox="0 0 4 6">
                         <path d={svgPaths.fileDetail} fill="#FDFCF8" />
                     </svg>
                 </div>
-                 <div className="absolute bottom-3/4 left-[67.5%] right-[12.5%] top-[5%]">
-                    <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 4 4">
+                 <div className="file-corner-wrapper">
+                    <svg className="file-icon-base" fill="none" preserveAspectRatio="none" viewBox="0 0 4 4">
                          <path d={svgPaths.fileCorner} fill="#FDFCF8" opacity="0.4" />
                     </svg>
                 </div>
@@ -121,8 +122,8 @@ function FileIcon({ type }: { type: FileNode['type'] }) {
 
 function SharedIcon() {
     return (
-        <div className="relative shrink-0 size-[16px]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <div className="file-icon-container">
+            <svg className="file-icon-base" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
                 {svgPaths.sharedGroup.map((d, i) => (
                     <path key={i} d={d} stroke="#6A4040" strokeLinecap="round" strokeLinejoin="round" strokeOpacity="0.6" strokeWidth="1.33333" />
                 ))}
@@ -154,10 +155,7 @@ export function FolderTreeNode({ node, checkedIds, onToggle, level = 0 }: Folder
     return (
         <div className="w-full">
              <div 
-                className={cn(
-                    "box-border content-stretch flex gap-[8px] h-[32px] items-center pr-[8px] py-0 relative w-full rounded-[4px] transition-colors cursor-pointer select-none",
-                    isHovered ? "bg-[rgba(106,64,64,0.04)]" : ""
-                )}
+                className="tree-node-container"
                 style={{ paddingLeft: `${level * 24 + 8}px` }} // 8px base padding + 24px per level indentation
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
@@ -170,7 +168,7 @@ export function FolderTreeNode({ node, checkedIds, onToggle, level = 0 }: Folder
                 }}
             >
                 {/* Arrow */}
-                <div className="flex items-center justify-center relative shrink-0 size-[16px]">
+                <div className="tree-node-arrow-container">
                     {hasChildren && (
                         <ExpandArrow 
                             isOpen={isOpen} 
@@ -184,9 +182,9 @@ export function FolderTreeNode({ node, checkedIds, onToggle, level = 0 }: Folder
                 <TreeCheckbox state={selectionState} onClick={() => onToggle(node)} />
 
                 {/* Icon & Name */}
-                <div className="bg-clip-padding border-0 border-[transparent] border-solid box-border content-stretch flex gap-[4px] items-center relative min-w-0 flex-1">
+                <div className="tree-node-content">
                     {isShared ? <SharedIcon /> : <FileIcon type={node.type} />}
-                    <p className="font-['Poppins'] leading-[1.5] text-[#6a4040] text-[12px] text-nowrap whitespace-pre overflow-hidden text-ellipsis font-bold font-normal">
+                    <p className="tree-node-text">
                         {node.name}
                     </p>
                 </div>
@@ -218,7 +216,7 @@ interface FolderTreeProps {
 
 export function FolderTree({ data, checkedIds, onToggle }: FolderTreeProps) {
     return (
-        <div className="flex flex-col w-full">
+        <div className="folder-tree-root">
             {data.map(node => (
                 <FolderTreeNode 
                     key={node.id} 
