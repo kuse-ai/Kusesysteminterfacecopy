@@ -199,7 +199,7 @@ export const WithLongText: Story = {
           { side: 'top', sideOffset: 6 },
           React.createElement(
             'p',
-            { style: { maxWidth: '200px' } },
+            {},
             'This is a much longer tooltip text that demonstrates how the tooltip handles longer content and text wrapping.'
           )
         )
